@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-body text-slate-900 bg-slate-50 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100;
+}
+
+.calendar-notes-lines {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(148, 163, 184, 0.25) 1px,
+    transparent 1px
+  );
+  background-size: 100% 32px;
+}
+
+.styled-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.styled-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.styled-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.3);
+  border-radius: 20px;
+}
+.dark .styled-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(51, 65, 85, 0.5);
+}
