@@ -90,11 +90,14 @@ export function useChronoData() {
     setIsLoaded(true);
   }, []);
 
-  const save = useCallback((newData: ChronoStore) => {
-    setData(newData);
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
-    }
+  const save = useCallback((action: ChronoStore | ((prev: ChronoStore) => ChronoStore)) => {
+    setData((prev) => {
+      const newData = typeof action === "function" ? action(prev) : action;
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
+      }
+      return newData;
+    });
   }, []);
 
   const updateDay = useCallback((dateISO: string, updates: Partial<DayData>) => {
